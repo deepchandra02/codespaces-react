@@ -25,7 +25,7 @@ Seed Inventory MVP in Vite + React.
 ## Current Handoff
 
 The project is connected to GitHub, and the source of truth is `feature_list.json`.
-The next implementation feature is issue #1: "Set up Firebase project and app integration".
+Issue #1 is complete on branch `feature/firebase-foundation`. The Firebase SDK, environment template, singleton client initialization, tests, setup documentation, Firebase services, and Hosting deployment are implemented.
 
 ## Last Updated
 
@@ -33,20 +33,20 @@ The next implementation feature is issue #1: "Set up Firebase project and app in
 
 ## Current Objective
 
-Configure the Firebase project and connect the Vite app.
+Implement Google authentication and session gating.
 
 ## Blockers
 
-Firebase project configuration and environment variables are still pending.
+The Web app is registered, Firestore is provisioned, Authentication is enabled, and Hosting is deployed. The Google provider was configured externally and needs end-to-end app verification.
 
 ## Files
 
-`AGENTS.md`, `feature_list.json`, `progress.md`, `init.sh`, `session-handoff.md`
+`AGENTS.md`, `feature_list.json`, `progress.md`, `init.sh`, `session-handoff.md`, `.env.example`, `.firebaserc`, `firebase.json`, `src/lib/firebase.js`, `src/index.jsx`, `src/App.test.jsx`, `README.md`, `package.json`, `package-lock.json`
 
 ## Next Session
 
-Read `AGENTS.md`, confirm issue #1 in `feature_list.json`, run `./init.sh`, then begin Firebase setup.
+Read `AGENTS.md`, `progress.md`, and `feature_list.json`, then begin issue #2: implement Google sign-in/sign-out and session persistence using the existing Firebase client.
 
 ## Recommended Next Step
 
-Create the Firebase project, enable Authentication, Firestore, and Hosting, and add environment-based config without committing secrets.
+Hosting is deployed at https://seed-inventory-reboot.web.app using `firebase.json` and `.firebaserc`. Next, implement and test Google sign-in locally and in production; full deployment acceptance remains pending until sign-in and Firestore writes work in production.
