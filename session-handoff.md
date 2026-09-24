@@ -24,8 +24,8 @@ Seed Inventory MVP in Vite + React.
 
 ## Current Handoff
 
-The harness is created. The next implementation feature is `firebase-foundation`.
-The repository has no GitHub remote, so feature issues are prepared conceptually but have not been published.
+The project is connected to GitHub, and the source of truth is `feature_list.json`.
+The next implementation feature is issue #1: "Set up Firebase project and app integration".
 
 ## Last Updated
 
@@ -37,16 +37,16 @@ Configure the Firebase project and connect the Vite app.
 
 ## Blockers
 
-GitHub remote and Firebase project are not configured.
+Firebase project configuration and environment variables are still pending.
 
 ## Files
 
-`AGENTS.md`, `feature_list.json`, `progress.md`, `init.sh`, `session-handoff.md`, `ISSUES.md`
+`AGENTS.md`, `feature_list.json`, `progress.md`, `init.sh`, `session-handoff.md`
 
 ## Next Session
 
-Read `AGENTS.md`, run `./init.sh`, then begin the `firebase-foundation` feature.
+Read `AGENTS.md`, confirm issue #1 in `feature_list.json`, run `./init.sh`, then begin Firebase setup.
 
 ## Recommended Next Step
 
-Create or connect the GitHub repository before publishing the drafts in `ISSUES.md`.
+Create the Firebase project, enable Authentication, Firestore, and Hosting, and add environment-based config without committing secrets.

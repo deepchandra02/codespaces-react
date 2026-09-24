@@ -1,6 +1,7 @@
 {
   "project": "Seed Inventory MVP",
   "status": "planned",
+  "repository": "deepchandra02/codespaces-react",
   "decisions": {
     "frontend": "Vite + React",
     "authentication": "Firebase Authentication with Google sign-in",
@@ -8,138 +9,294 @@
     "hosting": "Firebase Hosting",
     "ownership": "Private inventory per user",
     "quantity": "Plain number plus unit label; no conversions",
-    "import": "JSON import adds records and never replaces existing records",
+    "import": "JSON import adds records and never replaces existing data",
     "photos": false,
     "sharing": false
   },
+  "issues": [
+    {
+      "issue_number": 1,
+      "title": "Set up Firebase project and app integration",
+      "status": "not_started",
+      "url": "https://github.com/deepchandra02/codespaces-react/issues/1",
+      "dependencies": [],
+      "acceptance": [
+        "Firebase services are enabled and documented.",
+        "The app initializes Firebase locally.",
+        "Local and production configuration are distinct."
+      ]
+    },
+    {
+      "issue_number": 2,
+      "title": "Add Google authentication",
+      "status": "not_started",
+      "url": "https://github.com/deepchandra02/codespaces-react/issues/2",
+      "dependencies": [
+        1
+      ],
+      "acceptance": [
+        "Users can sign in and sign out with Google.",
+        "Signed-out users cannot access inventory content.",
+        "Refreshing preserves the session."
+      ]
+    },
+    {
+      "issue_number": 3,
+      "title": "Build seed inventory CRUD",
+      "status": "not_started",
+      "url": "https://github.com/deepchandra02/codespaces-react/issues/3",
+      "dependencies": [
+        2
+      ],
+      "acceptance": [
+        "Records persist under the signed-in user's Firestore path.",
+        "Forms validate required fields and non-negative quantities.",
+        "Archived records are excluded from the default list."
+      ]
+    },
+    {
+      "issue_number": 4,
+      "title": "Add quantity adjustment controls",
+      "status": "not_started",
+      "url": "https://github.com/deepchandra02/codespaces-react/issues/4",
+      "dependencies": [
+        3
+      ],
+      "acceptance": [
+        "Quantity cannot become negative.",
+        "Zero quantity is visibly treated as empty.",
+        "Updates persist to Firestore."
+      ]
+    },
+    {
+      "issue_number": 5,
+      "title": "Add inventory search, filters, and sorting",
+      "status": "not_started",
+      "url": "https://github.com/deepchandra02/codespaces-react/issues/5",
+      "dependencies": [
+        3
+      ],
+      "acceptance": [
+        "Search and filters can be combined.",
+        "Users can filter availability, crop, location, and archived state.",
+        "Users can sort by name, quantity, and viability date."
+      ]
+    },
+    {
+      "issue_number": 6,
+      "title": "Build inventory dashboard",
+      "status": "not_started",
+      "url": "https://github.com/deepchandra02/codespaces-react/issues/6",
+      "dependencies": [
+        3,
+        5
+      ],
+      "acceptance": [
+        "Archived records are excluded from normal counts.",
+        "Empty, soon-to-expire, and expired states are represented.",
+        "Empty inventory has a useful state."
+      ]
+    },
+    {
+      "issue_number": 7,
+      "title": "Add additive JSON import and export",
+      "status": "not_started",
+      "url": "https://github.com/deepchandra02/codespaces-react/issues/7",
+      "dependencies": [
+        3
+      ],
+      "acceptance": [
+        "Export produces valid JSON.",
+        "Import validates the complete file before writing.",
+        "The user previews the record count and confirms the import."
+      ]
+    },
+    {
+      "issue_number": 8,
+      "title": "Add Firestore security rules and error states",
+      "status": "not_started",
+      "url": "https://github.com/deepchandra02/codespaces-react/issues/8",
+      "dependencies": [
+        2,
+        3
+      ],
+      "acceptance": [
+        "Cross-user reads and writes are rejected.",
+        "Errors are actionable and do not expose internal details.",
+        "Security verification evidence is recorded."
+      ]
+    },
+    {
+      "issue_number": 9,
+      "title": "Deploy MVP with Firebase Hosting",
+      "status": "not_started",
+      "url": "https://github.com/deepchandra02/codespaces-react/issues/9",
+      "dependencies": [
+        6,
+        7,
+        8
+      ],
+      "acceptance": [
+        "The production URL loads and route refreshes work.",
+        "Google sign-in and Firestore writes work in production.",
+        "Deployment steps are documented."
+      ]
+    }
+  ],
   "features": [
     {
-      "id": "firebase-foundation",
-      "name": "Firebase foundation",
+      "id": "set-up-firebase-project-and-app-integration",
+      "name": "Set up Firebase project and app integration",
       "title": "Set up Firebase project and app integration",
-      "description": "Configure Firebase services and connect the Vite app without committed secrets.",
+      "description": "Firebase services are enabled and documented.",
       "status": "not_started",
+      "issue_number": 1,
+      "url": "https://github.com/deepchandra02/codespaces-react/issues/1",
       "dependencies": [],
-      "depends_on": [],
       "acceptance": [
-        "Firebase project services are configured for local development",
-        "The Vite app initializes Firebase without committed secrets",
-        "Authentication, Firestore, and Hosting configuration is documented"
+        "Firebase services are enabled and documented.",
+        "The app initializes Firebase locally.",
+        "Local and production configuration are distinct."
       ]
     },
     {
-      "id": "authentication",
-      "name": "Google authentication",
+      "id": "add-google-authentication",
+      "name": "Add Google authentication",
       "title": "Add Google authentication",
-      "description": "Provide Google sign-in, sign-out, session persistence, and protected inventory content.",
+      "description": "Users can sign in and sign out with Google.",
       "status": "not_started",
-      "dependencies": ["firebase-foundation"],
-      "depends_on": ["firebase-foundation"],
+      "issue_number": 2,
+      "url": "https://github.com/deepchandra02/codespaces-react/issues/2",
+      "dependencies": [
+        1
+      ],
       "acceptance": [
-        "A user can sign in with Google",
-        "A signed-in user can sign out",
-        "Signed-out users cannot access inventory content",
-        "Refreshing the app preserves the Firebase session"
+        "Users can sign in and sign out with Google.",
+        "Signed-out users cannot access inventory content.",
+        "Refreshing preserves the session."
       ]
     },
     {
-      "id": "inventory-crud",
-      "name": "Seed inventory CRUD",
+      "id": "build-seed-inventory-crud",
+      "name": "Build seed inventory CRUD",
       "title": "Build seed inventory CRUD",
-      "description": "Create, view, edit, archive, and permanently delete per-user seed records.",
+      "description": "Records persist under the signed-in user's Firestore path.",
       "status": "not_started",
-      "dependencies": ["authentication"],
-      "depends_on": ["authentication"],
+      "issue_number": 3,
+      "url": "https://github.com/deepchandra02/codespaces-react/issues/3",
+      "dependencies": [
+        2
+      ],
       "acceptance": [
-        "A user can create, view, edit, archive, and permanently delete seed records",
-        "Forms validate required fields and non-negative quantities",
-        "Records persist in the signed-in user's Firestore collection"
+        "Records persist under the signed-in user's Firestore path.",
+        "Forms validate required fields and non-negative quantities.",
+        "Archived records are excluded from the default list."
       ]
     },
     {
-      "id": "quantity-adjustments",
-      "name": "Quantity adjustments",
+      "id": "add-quantity-adjustment-controls",
+      "name": "Add quantity adjustment controls",
       "title": "Add quantity adjustment controls",
-      "description": "Allow quick non-negative quantity increases and decreases.",
+      "description": "Quantity cannot become negative.",
       "status": "not_started",
-      "dependencies": ["inventory-crud"],
-      "depends_on": ["inventory-crud"],
+      "issue_number": 4,
+      "url": "https://github.com/deepchandra02/codespaces-react/issues/4",
+      "dependencies": [
+        3
+      ],
       "acceptance": [
-        "Users can increase or decrease quantity from the inventory workflow",
-        "Quantities cannot become negative",
-        "A zero quantity is visibly treated as empty"
+        "Quantity cannot become negative.",
+        "Zero quantity is visibly treated as empty.",
+        "Updates persist to Firestore."
       ]
     },
     {
-      "id": "search-filtering",
-      "name": "Search and filtering",
+      "id": "add-inventory-search--filters--and-sorting",
+      "name": "Add inventory search, filters, and sorting",
       "title": "Add inventory search, filters, and sorting",
-      "description": "Search, filter, and sort active and archived inventory records.",
+      "description": "Search and filters can be combined.",
       "status": "not_started",
-      "dependencies": ["inventory-crud"],
-      "depends_on": ["inventory-crud"],
+      "issue_number": 5,
+      "url": "https://github.com/deepchandra02/codespaces-react/issues/5",
+      "dependencies": [
+        3
+      ],
       "acceptance": [
-        "Users can search variety, crop, location, and notes",
-        "Users can filter availability, crop, location, and archived state",
-        "Users can sort by name, quantity, and viability date"
+        "Search and filters can be combined.",
+        "Users can filter availability, crop, location, and archived state.",
+        "Users can sort by name, quantity, and viability date."
       ]
     },
     {
-      "id": "dashboard",
-      "name": "Inventory dashboard",
+      "id": "build-inventory-dashboard",
+      "name": "Build inventory dashboard",
       "title": "Build inventory dashboard",
-      "description": "Show inventory totals and viability attention items.",
+      "description": "Archived records are excluded from normal counts.",
       "status": "not_started",
-      "dependencies": ["inventory-crud", "search-filtering"],
-      "depends_on": ["inventory-crud", "search-filtering"],
+      "issue_number": 6,
+      "url": "https://github.com/deepchandra02/codespaces-react/issues/6",
+      "dependencies": [
+        3,
+        5
+      ],
       "acceptance": [
-        "Dashboard counts exclude archived records by default",
-        "Empty, low-stock, soon-to-expire, and expired states are represented",
-        "Attention items link to relevant inventory results"
+        "Archived records are excluded from normal counts.",
+        "Empty, soon-to-expire, and expired states are represented.",
+        "Empty inventory has a useful state."
       ]
     },
     {
-      "id": "json-backup",
-      "name": "Additive JSON backup",
+      "id": "add-additive-json-import-and-export",
+      "name": "Add additive JSON import and export",
       "title": "Add additive JSON import and export",
-      "description": "Export inventory and validate additive imports without replacement.",
+      "description": "Export produces valid JSON.",
       "status": "not_started",
-      "dependencies": ["inventory-crud"],
-      "depends_on": ["inventory-crud"],
+      "issue_number": 7,
+      "url": "https://github.com/deepchandra02/codespaces-react/issues/7",
+      "dependencies": [
+        3
+      ],
       "acceptance": [
-        "A user can export their inventory as JSON",
-        "A valid JSON file can add records to the existing inventory",
-        "Malformed files are rejected before any write occurs",
-        "Import previews the record count and requires confirmation"
+        "Export produces valid JSON.",
+        "Import validates the complete file before writing.",
+        "The user previews the record count and confirms the import."
       ]
     },
     {
-      "id": "security-errors",
-      "name": "Firestore security and errors",
+      "id": "add-firestore-security-rules-and-error-states",
+      "name": "Add Firestore security rules and error states",
       "title": "Add Firestore security rules and error states",
-      "description": "Enforce user isolation and handle loading, permission, write, and offline failures.",
+      "description": "Cross-user reads and writes are rejected.",
       "status": "not_started",
-      "dependencies": ["authentication", "inventory-crud"],
-      "depends_on": ["authentication", "inventory-crud"],
+      "issue_number": 8,
+      "url": "https://github.com/deepchandra02/codespaces-react/issues/8",
+      "dependencies": [
+        2,
+        3
+      ],
       "acceptance": [
-        "Firestore rules prevent cross-user reads and writes",
-        "Loading, save failure, permission failure, and offline states are handled",
-        "Security verification evidence is recorded in progress.md"
+        "Cross-user reads and writes are rejected.",
+        "Errors are actionable and do not expose internal details.",
+        "Security verification evidence is recorded."
       ]
     },
     {
-      "id": "firebase-deployment",
-      "name": "Firebase Hosting deployment",
+      "id": "deploy-mvp-with-firebase-hosting",
+      "name": "Deploy MVP with Firebase Hosting",
       "title": "Deploy MVP with Firebase Hosting",
-      "description": "Deploy the production Vite app with SPA routing and verified Firebase services.",
+      "description": "The production URL loads and route refreshes work.",
       "status": "not_started",
-      "dependencies": ["dashboard", "json-backup", "security-errors"],
-      "depends_on": ["dashboard", "json-backup", "security-errors"],
+      "issue_number": 9,
+      "url": "https://github.com/deepchandra02/codespaces-react/issues/9",
+      "dependencies": [
+        6,
+        7,
+        8
+      ],
       "acceptance": [
-        "The production build deploys to Firebase Hosting",
-        "SPA route refreshes do not return 404",
-        "Google sign-in and Firestore writes work in production",
-        "The production URL and deployment steps are documented"
+        "The production URL loads and route refreshes work.",
+        "Google sign-in and Firestore writes work in production.",
+        "Deployment steps are documented."
       ]
     }
   ]

@@ -3,8 +3,9 @@
 ## Startup Workflow
 
 1. Read `progress.md` and `feature_list.json` before writing code.
-2. Work on one feature at a time, in dependency order.
-3. Inspect the existing Vite/React implementation before introducing abstractions.
+2. Treat `feature_list.json` as the source of truth for issue status and scope.
+3. Work on one feature at a time, in dependency order.
+4. Inspect the existing Vite/React implementation before introducing abstractions.
 
 ## Product Scope
 
