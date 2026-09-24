@@ -1,12 +1,6 @@
-# GitHub Codespaces ♥️ React
+# Seed Inventory MVP
 
-Welcome to your shiny new Codespace running React! We've got everything fired up and running for you to explore React.
-
-You've got a blank canvas to work on from a git perspective as well. There's a single initial commit with the what you're seeing right now - where you go from here is up to you!
-
-Everything you do here is contained within this one codespace. There is no repository on GitHub yet. If and when you’re ready you can click "Publish Branch" and we’ll create your repository and push up your project. If you were just exploring then and have no further need for this code then you can simply delete your codespace and it's gone forever.
-
-This project was bootstrapped for you with [Vite](https://vitejs.dev/).
+Private seed inventory application built with [Vite](https://vitejs.dev/), React, and Firebase.
 
 ## Available Scripts
 
@@ -14,28 +8,48 @@ In the project directory, you can run:
 
 ### `npm start`
 
-We've already run this for you in the `Codespaces: server` terminal window below. If you need to stop the server for any reason you can just run `npm start` again to bring it back online.
-
-Runs the app in the development mode.\
-Open [http://localhost:3000/](http://localhost:3000/) in the built-in Simple Browser (`Cmd/Ctrl + Shift + P > Simple Browser: Show`) to view your running application.
+Starts the Vite development server at [http://localhost:3000/](http://localhost:3000/).
 
 The page will reload automatically when you make changes.\
 You may also see any lint errors in the console.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches the Vitest test runner.
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Builds the app for production to the `dist` folder.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Firebase setup
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Create or select a Firebase project, register a Web app, and enable Cloud Firestore and Firebase Authentication. The Google provider and sign-in flow are configured in the authentication feature.
+
+Copy `.env.example` to `.env.local` and replace each placeholder with the Web app configuration from the Firebase console:
+
+```text
+VITE_FIREBASE_API_KEY
+VITE_FIREBASE_AUTH_DOMAIN
+VITE_FIREBASE_PROJECT_ID
+VITE_FIREBASE_STORAGE_BUCKET
+VITE_FIREBASE_MESSAGING_SENDER_ID
+VITE_FIREBASE_APP_ID
+```
+
+Local files such as `.env.local` are ignored by Git. Production builds must receive their own `VITE_FIREBASE_*` values through the deployment environment; do not commit environment files. Firebase Web configuration is included in the browser bundle by design, while authentication and Firestore security rules enforce access control.
+
+The Firebase client is initialized from `src/lib/firebase.js` and reuses the existing app during React Strict Mode or Vite HMR.
+
+## Firebase Hosting
+
+The Hosting configuration is in `firebase.json` and publishes the Vite `dist` directory with a single-page-app fallback. Deploy with:
+
+```bash
+npm run build
+firebase deploy --only hosting --project seed-inventory-reboot
+```
+
+Production URL: https://seed-inventory-reboot.web.app
 
 ## Learn More
 

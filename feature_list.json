@@ -1,6 +1,6 @@
 {
   "project": "Seed Inventory MVP",
-  "status": "planned",
+  "status": "in_progress",
   "repository": "deepchandra02/codespaces-react",
   "decisions": {
     "frontend": "Vite + React",
@@ -17,7 +17,7 @@
     {
       "issue_number": 1,
       "title": "Set up Firebase project and app integration",
-      "status": "not_started",
+      "status": "completed",
       "url": "https://github.com/deepchandra02/codespaces-react/issues/1",
       "dependencies": [],
       "acceptance": [
@@ -149,7 +149,7 @@
       "name": "Set up Firebase project and app integration",
       "title": "Set up Firebase project and app integration",
       "description": "Firebase services are enabled and documented.",
-      "status": "not_started",
+      "status": "completed",
       "issue_number": 1,
       "url": "https://github.com/deepchandra02/codespaces-react/issues/1",
       "dependencies": [],
