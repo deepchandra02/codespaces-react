@@ -1,0 +1,146 @@
+{
+  "project": "Seed Inventory MVP",
+  "status": "planned",
+  "decisions": {
+    "frontend": "Vite + React",
+    "authentication": "Firebase Authentication with Google sign-in",
+    "database": "Cloud Firestore",
+    "hosting": "Firebase Hosting",
+    "ownership": "Private inventory per user",
+    "quantity": "Plain number plus unit label; no conversions",
+    "import": "JSON import adds records and never replaces existing records",
+    "photos": false,
+    "sharing": false
+  },
+  "features": [
+    {
+      "id": "firebase-foundation",
+      "name": "Firebase foundation",
+      "title": "Set up Firebase project and app integration",
+      "description": "Configure Firebase services and connect the Vite app without committed secrets.",
+      "status": "not_started",
+      "dependencies": [],
+      "depends_on": [],
+      "acceptance": [
+        "Firebase project services are configured for local development",
+        "The Vite app initializes Firebase without committed secrets",
+        "Authentication, Firestore, and Hosting configuration is documented"
+      ]
+    },
+    {
+      "id": "authentication",
+      "name": "Google authentication",
+      "title": "Add Google authentication",
+      "description": "Provide Google sign-in, sign-out, session persistence, and protected inventory content.",
+      "status": "not_started",
+      "dependencies": ["firebase-foundation"],
+      "depends_on": ["firebase-foundation"],
+      "acceptance": [
+        "A user can sign in with Google",
+        "A signed-in user can sign out",
+        "Signed-out users cannot access inventory content",
+        "Refreshing the app preserves the Firebase session"
+      ]
+    },
+    {
+      "id": "inventory-crud",
+      "name": "Seed inventory CRUD",
+      "title": "Build seed inventory CRUD",
+      "description": "Create, view, edit, archive, and permanently delete per-user seed records.",
+      "status": "not_started",
+      "dependencies": ["authentication"],
+      "depends_on": ["authentication"],
+      "acceptance": [
+        "A user can create, view, edit, archive, and permanently delete seed records",
+        "Forms validate required fields and non-negative quantities",
+        "Records persist in the signed-in user's Firestore collection"
+      ]
+    },
+    {
+      "id": "quantity-adjustments",
+      "name": "Quantity adjustments",
+      "title": "Add quantity adjustment controls",
+      "description": "Allow quick non-negative quantity increases and decreases.",
+      "status": "not_started",
+      "dependencies": ["inventory-crud"],
+      "depends_on": ["inventory-crud"],
+      "acceptance": [
+        "Users can increase or decrease quantity from the inventory workflow",
+        "Quantities cannot become negative",
+        "A zero quantity is visibly treated as empty"
+      ]
+    },
+    {
+      "id": "search-filtering",
+      "name": "Search and filtering",
+      "title": "Add inventory search, filters, and sorting",
+      "description": "Search, filter, and sort active and archived inventory records.",
+      "status": "not_started",
+      "dependencies": ["inventory-crud"],
+      "depends_on": ["inventory-crud"],
+      "acceptance": [
+        "Users can search variety, crop, location, and notes",
+        "Users can filter availability, crop, location, and archived state",
+        "Users can sort by name, quantity, and viability date"
+      ]
+    },
+    {
+      "id": "dashboard",
+      "name": "Inventory dashboard",
+      "title": "Build inventory dashboard",
+      "description": "Show inventory totals and viability attention items.",
+      "status": "not_started",
+      "dependencies": ["inventory-crud", "search-filtering"],
+      "depends_on": ["inventory-crud", "search-filtering"],
+      "acceptance": [
+        "Dashboard counts exclude archived records by default",
+        "Empty, low-stock, soon-to-expire, and expired states are represented",
+        "Attention items link to relevant inventory results"
+      ]
+    },
+    {
+      "id": "json-backup",
+      "name": "Additive JSON backup",
+      "title": "Add additive JSON import and export",
+      "description": "Export inventory and validate additive imports without replacement.",
+      "status": "not_started",
+      "dependencies": ["inventory-crud"],
+      "depends_on": ["inventory-crud"],
+      "acceptance": [
+        "A user can export their inventory as JSON",
+        "A valid JSON file can add records to the existing inventory",
+        "Malformed files are rejected before any write occurs",
+        "Import previews the record count and requires confirmation"
+      ]
+    },
+    {
+      "id": "security-errors",
+      "name": "Firestore security and errors",
+      "title": "Add Firestore security rules and error states",
+      "description": "Enforce user isolation and handle loading, permission, write, and offline failures.",
+      "status": "not_started",
+      "dependencies": ["authentication", "inventory-crud"],
+      "depends_on": ["authentication", "inventory-crud"],
+      "acceptance": [
+        "Firestore rules prevent cross-user reads and writes",
+        "Loading, save failure, permission failure, and offline states are handled",
+        "Security verification evidence is recorded in progress.md"
+      ]
+    },
+    {
+      "id": "firebase-deployment",
+      "name": "Firebase Hosting deployment",
+      "title": "Deploy MVP with Firebase Hosting",
+      "description": "Deploy the production Vite app with SPA routing and verified Firebase services.",
+      "status": "not_started",
+      "dependencies": ["dashboard", "json-backup", "security-errors"],
+      "depends_on": ["dashboard", "json-backup", "security-errors"],
+      "acceptance": [
+        "The production build deploys to Firebase Hosting",
+        "SPA route refreshes do not return 404",
+        "Google sign-in and Firestore writes work in production",
+        "The production URL and deployment steps are documented"
+      ]
+    }
+  ]
+}
